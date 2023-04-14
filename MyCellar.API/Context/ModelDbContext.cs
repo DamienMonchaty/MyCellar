@@ -80,6 +80,8 @@ namespace MyCellar.API.Context
             modelBuilder.Entity<User>().Property(u => u.Email).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<User>().Property(u => u.Password).HasColumnType("nvarchar(100)").IsRequired();
             modelBuilder.Entity<User>().Property(u => u.Sexe).HasColumnType("nvarchar(100)").IsRequired(false);
+            modelBuilder.Entity<User>().Property(u => u.Role).HasColumnType("nvarchar(100)").IsRequired(false);
+
 
             // UserProduct
             modelBuilder.Entity<UserProduct>().Property(u => u.UserId).HasColumnType("int").IsRequired();

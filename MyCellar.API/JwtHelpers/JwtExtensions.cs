@@ -9,7 +9,7 @@ namespace MyCellar.API.JwtHelpers
 {
     public static class JwtExtensions
     {
-        public static void GenerateToken(this User user, IConfiguration configuration)
+        public static string GenerateToken(this User user, IConfiguration configuration)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace MyCellar.API.JwtHelpers
                                 .AddRole(user.Role)
                                 .Build();
                 
-                user.Token = token.Value;
+                return token.Value;
             }
             catch (Exception)
             {

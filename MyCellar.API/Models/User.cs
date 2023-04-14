@@ -13,11 +13,9 @@ namespace MyCellar.API.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Sexe { get; set; }
-        public string Role { get; set; }
-        [NotMapped]
-        public string Token { get; set; }
+        public string? Role { get; set; }
         [JsonIgnore]
-        public virtual ICollection<UserProduct> UserProducts { get; set; }
+        public virtual ICollection<UserProduct>? UserProducts { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 

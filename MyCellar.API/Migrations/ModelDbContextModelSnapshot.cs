@@ -321,8 +321,7 @@ namespace MyCellar.API.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Sexe")
                         .HasColumnType("nvarchar(100)");
@@ -344,7 +343,7 @@ namespace MyCellar.API.Migrations
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "email1@email.fr",
-                            Password = "$2a$11$.MPfCrz9aLshsUaH8X2G6eIeqqW/ZVpOJA4Jawhf0qVR6yI8fH/2K",
+                            Password = "$2a$11$//ZloPEPVhsYIUdYZKfZd.agrkZlzz/hMJKn6uB.Zcq4o66Ooor82",
                             Role = "User",
                             Sexe = "sexe1",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -355,7 +354,7 @@ namespace MyCellar.API.Migrations
                             Id = 2,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "email2@email.fr",
-                            Password = "$2a$11$DlAiw4tpaJJeqxfcSfHk/utBMMycbDpKxowDk5Z1JLrxTugL1nMDi",
+                            Password = "$2a$11$HD2nxGgHTtEtvXYgOI9dxekNjEWiyxo4AjSAnqYsgSX5PBZtBN7wq",
                             Role = "Admin",
                             Sexe = "sexe1",
                             UpdatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),

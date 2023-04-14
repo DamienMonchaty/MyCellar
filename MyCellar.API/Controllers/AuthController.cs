@@ -60,12 +60,12 @@ namespace MyCellar.API.Controllers
 
                 if (user != null || BC.Verify(model.Password, user.Password))
                 {
-                    user.GenerateToken(_configuration);
-                    return Ok(new CustomResponse<User>
+                    var token = user.GenerateToken(_configuration);
+                    return Ok(new CustomResponse<string>
                     {
                         Message = Global.ResponseMessages.Success,
                         StatusCode = StatusCodes.Status200OK,
-                        Result = user
+                        Result = token
                     });
                 }
                 else
@@ -104,6 +104,9 @@ namespace MyCellar.API.Controllers
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(ModelState);
+                }
+                if (user.Role is null) {
+                    user.Role = "User";
                 }
                 return Ok(new CustomResponse<User>
                 {

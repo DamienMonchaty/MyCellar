@@ -14,9 +14,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Declaration du gestionaire d'entité et sa chaine de connexion a la db
 builder.Services.AddDbContext<ModelDbContext>(options => {
 
-    var connectionString = "Server=mysql-instanceserver.mysql.database.azure.com;UserID=username;Password=Da060886!;Database=mycellardb;SSLMode=Required";
+    string mySqlConnectionStr = builder.Configuration.GetConnectionString("DefaultConnection"); 
     var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-    options.UseMySql(connectionString, serverVersion)
+    options.UseMySql(mySqlConnectionStr, serverVersion)
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors();

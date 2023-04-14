@@ -29,6 +29,7 @@ namespace MyCellar.API.Repository.Impl
                 Email = o.Email,
                 Password = BC.HashPassword(o.Password),
                 Sexe = o.Sexe,
+                Role = o.Role,
             };
             _context.Users.Add(uToSave);
             await _context.SaveChangesAsync();
