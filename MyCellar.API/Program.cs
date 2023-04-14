@@ -7,6 +7,7 @@ using MyCellar.API.Repository.Impl;
 using MyCellar.API.Repository;
 using System.Text;
 using MyCellar.API.ElasticHelpers;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,63 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var securityScheme = new OpenApiSecurityScheme()
+{
+    Name = "Authorization",
+    Type = SecuritySchemeType.ApiKey,
+    Scheme = "Bearer",
+    BearerFormat = "JWT",
+    In = ParameterLocation.Header,
+    Description = "JSON Web Token based security",
+};
+
+var securityReq = new OpenApiSecurityRequirement()
+{
+    {
+        new OpenApiSecurityScheme
+        {
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = "Bearer"
+            }
+        },
+        new string[] {}
+    }
+};
+
+var contact = new OpenApiContact()
+{
+    Name = "Damien Monchaty",
+    Email = "damienmonchaty@hotmail.fr",
+    //Url = new Uri("")
+};
+
+var license = new OpenApiLicense()
+{
+    Name = "Free License",
+    //Url = new Uri("")
+};
+
+var info = new OpenApiInfo()
+{
+    Version = "v1",
+    Title = "MyCellar API",
+    Description = "...",
+    TermsOfService = new Uri("http://www.example.com"),
+    Contact = contact,
+    License = license
+};
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(o =>
+{
+    o.SwaggerDoc("v1", info);
+    o.AddSecurityDefinition("Bearer", securityScheme);
+    o.AddSecurityRequirement(securityReq);
+});
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -71,6 +129,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
